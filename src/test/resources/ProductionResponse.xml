@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns="urn:partner.soap.sforce.com" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <soapenv:Body>
+        <loginResponse>
+            <result>
+                <metadataServerUrl>https://xxxxx.my.salesforce.com/services/Soap/m/41.0/xxxxxxxxxxxxxxx</metadataServerUrl>
+                <passwordExpired>false</passwordExpired>
+                <sandbox>false</sandbox>
+                <serverUrl>https://xxxxx.my.salesforce.com/services/Soap/u/41.0/xxxxxxxxxxxxxxx</serverUrl>
+                <sessionId>thisissessionid</sessionId>
+                <userId>thisisuserid</userId>
+                <userInfo>
+                    <accessibilityMode>false</accessibilityMode>
+                    <chatterExternal>false</chatterExternal>
+                    <currencySymbol>￥</currencySymbol>
+                    <orgAttachmentFileSizeLimit>5242880</orgAttachmentFileSizeLimit>
+                    <orgDefaultCurrencyIsoCode>JPY</orgDefaultCurrencyIsoCode>
+                    <orgDefaultCurrencyLocale>ja_JP</orgDefaultCurrencyLocale>
+                    <orgDisallowHtmlAttachments>false</orgDisallowHtmlAttachments>
+                    <orgHasPersonAccounts>false</orgHasPersonAccounts>
+                    <organizationId>thisisorganizationid</organizationId>
+                    <organizationMultiCurrency>false</organizationMultiCurrency>
+                    <organizationName>thisisorganizationname</organizationName>
+                    <profileId>thisisprofileid</profileId>
+                    <roleId>thisisroleid</roleId>
+                    <sessionSecondsValid>43200</sessionSecondsValid>
+                    <userDefaultCurrencyIsoCode xsi:nil="true"/>
+                    <userEmail>tamura.shingo@gmail.com</userEmail>
+                    <userFullName>Tamura Shingo</userFullName>
+                    <userId>thisisuserid</userId>
+                    <userLanguage>ja</userLanguage>
+                    <userLocale>ja_JP</userLocale>
+                    <userName>tamura.shingo@gmail.com</userName>
+                    <userTimeZone>Asia/Tokyo</userTimeZone>
+                    <userType>Standard</userType>
+                    <userUiSkin>Theme3</userUiSkin>
+                </userInfo>
+            </result>
+        </loginResponse>
+    </soapenv:Body>
+</soapenv:Envelope>

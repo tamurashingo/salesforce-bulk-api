@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Wikimedia>
+  <projects>
+    <project name="Wikipedia" launch="2001-01-05">
+      <editions>
+        <edition language="English">en.wikipedia.org</edition>
+        <edition language="German">de.wikipedia.org</edition>
+        <edition language="French">fr.wikipedia.org</edition>
+        <edition language="Polish">pl.wikipedia.org</edition>
+        <edition language="Spanish">es.wikipedia.org</edition>
+      </editions>
+    </project>
+  </projects>
+</Wikimedia>
