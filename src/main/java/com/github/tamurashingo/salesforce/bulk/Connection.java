@@ -7,8 +7,6 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.channels.ConnectionPendingException;
-import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -140,8 +138,42 @@ public class Connection {
         throw new ConnectionException("Unable to get the server instance name:" + serverURL);
     }
 
-    public void postXml(String path, String xml, List<Map<String, String>> headers) {
-        String url = String.format("https://%s/", this.instanceHost);
+    public String postXml(String path, String xml, Map<String, String> headers) throws IOException, ConnectionException {
+        URL url = new URL(String.format("https://%s/%s/%s/%s", this.instanceHost, API_PATH_PREFIX, this.apiVersion, path));
+
+        // setup
+        HttpURLConnection connection = (HttpURLConnection)url.openConnection();
+        connection.setRequestMethod("POST");
+        connection.setDoOutput(true);
+        connection.setDoInput(true);
+        connection.setUseCaches(false);
+        connection.addRequestProperty("X-SFDC-Session", this.sessionId);
+        headers.forEach((k, v) -> connection.addRequestProperty(k, v));
+
+        connection.connect();
+
+        // post request
+        try (BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"))) {
+            writer.write(xml);
+        }
+
+        // response
+        int responseCode = connection.getResponseCode();
+        System.out.println("response:" + responseCode);
+        if (responseCode < 200 || responseCode >= 400) {
+            InputStream in = connection.getErrorStream();
+            String errorMessage;
+            try {
+                errorMessage = IOUtils.toString(in, "UTF-8");
+            } catch (IOException ex) {
+                errorMessage = "Server Response Error:" + responseCode;
+            }
+            throw new ConnectionException(errorMessage);
+        }
+
+        // read response body
+        InputStream in = connection.getInputStream();
+        return IOUtils.toString(in, "UTF-8");
     }
 
     public static class ConnectionException extends SalesforceBulkException {
